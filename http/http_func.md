@@ -21,5 +21,77 @@
 
 </code></pre>
 
+# func cleanPath(p string) string
+## 规范路径,去掉路径中的. 和..,按照shell的目录跳转
+* 
 
+## 代码
+<pre><code>
+    func cleanPath(p string) string {
+        if p == "" {
+            return "/";    
+        }    
+        if p[0] != '/' {
+            p = "/" + p    
+        }
+        np := path.Clean(p)
+        if p[len(p) - 1] == '/' && np != "/" {
+            np += "/"    
+        }
+        return np
+    }
+</code></pre>
+
+## 示例代码
+<pre><code>
+package main
+
+import (
+        "fmt"
+        "path"
+)
+
+func main() {
+        paths := []string{
+                "a/c",
+                "a//c",
+                "a/c/.",
+                "a/c/b/..",
+                "/../a/c",
+                "/../a/b/../././/c",
+                "/../a/b/../././/c/",
+        }
+
+        for _, p := range paths {
+                fmt.Printf("Clean(%q) = %q\n", p, cleanPath(p))
+        }
+}
+
+func cleanPath(p string) string {
+        if p == "" {
+                return "/"
+        }
+        if p[0] != '/' {
+                p = "/" + p
+        }
+        np := path.Clean(p)
+        if p[len(p)-1] == '/' && np != "/" {
+                np += "/"
+        }
+        return np
+}
+
+
+</code></pre>
+
+## 示例结果
+<pre><code>
+Clean("a/c") = "/a/c"
+Clean("a//c") = "/a/c"
+Clean("a/c/.") = "/a/c"
+Clean("a/c/b/..") = "/a/c"
+Clean("/../a/c") = "/a/c"
+Clean("/../a/b/../././/c") = "/a/c"
+Clean("/../a/b/../././/c/") = "/a/c/"
+</code></pre>
 
