@@ -21,6 +21,61 @@
 
 </code></pre>
 
+
+## 示例
+<pre><code>
+package main
+
+import (
+        "fmt"
+        "path"
+)
+
+func main() {
+        paths := map[string]string{
+                "":         "/adf",
+                "12":       "12sds",
+                "56":       "56",
+                "567":      "57",
+                "as/ff/":   "as/ff",
+                "as/fff/":  "as/fff/",
+                "as/ffff/": "as/ffff/fff",
+        }
+
+        for k, p := range paths {
+                fmt.Printf("pattern=%s,path=%s,result=%v \n", k, p, pathMatch(k, p))
+        }
+}
+
+func cleanPath(p string) string {
+        if p == "" {
+                return "/"
+        }
+        if p[0] != '/' {
+                p = "/" + p
+        }
+        np := path.Clean(p)
+        if p[len(p)-1] == '/' && np != "/" {
+                np += "/"
+        }
+        return np
+}
+
+</code></pre>
+
+## 实例结果
+<pre><code>
+
+<ttern=as/fff/,path=as/fff/,result=true 
+pattern=as/ffff/,path=as/ffff/fff,result=true 
+pattern=,path=/adf,result=false 
+pattern=12,path=12sds,result=false 
+pattern=56,path=56,result=true 
+pattern=567,path=57,result=false 
+pattern=as/ff/,path=as/ff,result=false
+</code></pre>
+
+
 ## func cleanPath(p string) string
 ### 规范路径,去掉路径中的. 和..,按照shell的目录跳转
 *  
