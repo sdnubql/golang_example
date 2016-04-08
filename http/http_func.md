@@ -66,7 +66,7 @@ func cleanPath(p string) string {
 ## 实例结果
 <pre><code>
 
-<ttern=as/fff/,path=as/fff/,result=true 
+pattern=as/fff/,path=as/fff/,result=true 
 pattern=as/ffff/,path=as/ffff/fff,result=true 
 pattern=,path=/adf,result=false 
 pattern=12,path=12sds,result=false 
