@@ -1,11 +1,11 @@
 从头开始比较pattern是否和path匹配
-# func pathMatch(pattern,path string) bool
-## 匹配逻辑
+## func pathMatch(pattern,path string) bool
+### 匹配逻辑
 * pattern是否为空,为空 false
 * pattern不是以/结尾，直接比对 pattern和path 不等 false
 * 判断 path的长度大于等于pattern，并且 pattern和path的前pattern个长度的字符比较相等true
 
-## 代码
+### 代码
 <pre><code>
     func pathMatch(pattern,path string) bool {
         if len(pattern) == 0 {
@@ -21,11 +21,11 @@
 
 </code></pre>
 
-# func cleanPath(p string) string
-## 规范路径,去掉路径中的. 和..,按照shell的目录跳转
-* 
+## func cleanPath(p string) string
+### 规范路径,去掉路径中的. 和..,按照shell的目录跳转
+*  
 
-## 代码
+### 代码
 <pre><code>
     func cleanPath(p string) string {
         if p == "" {
@@ -42,7 +42,7 @@
     }
 </code></pre>
 
-## 示例代码
+### 示例代码
 <pre><code>
 package main
 
@@ -84,7 +84,7 @@ func cleanPath(p string) string {
 
 </code></pre>
 
-## 示例结果
+### 示例结果
 <pre><code>
 Clean("a/c") = "/a/c"
 Clean("a//c") = "/a/c"
